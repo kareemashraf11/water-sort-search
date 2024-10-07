@@ -25,8 +25,8 @@ public class Node {
             for (int j = 0; j < state.getBottles().size(); j++) {
                 if(i != j && state.canPour(i, j)) {
                     State child = new State(state);
-                    child.pour(i, j);
-                    Node childNode = new Node(child, this, generateOperator(i, j), depth + 1, pathCost + 1);
+                    int times = child.pour(i, j);
+                    Node childNode = new Node(child, this, generateOperator(i, j), depth + 1, pathCost + times);
                     children.add(childNode);
                 }
             }
@@ -37,6 +37,39 @@ public class Node {
     public String generateOperator(int i, int j) {
         return "pour_" + i + "_" + j;
     }
+
+    public State getState() {
+        return state;
+    }
+
+    public int getPathCost() {
+        return pathCost;
+    }
+
+    public Node getParent() {
+        return parent;
+    }
+
+    public int getDepth() {
+        return depth;
+    }
+
+    public String generatePlan() {
+        StringBuilder sb = new StringBuilder();
+        generatePlanHelper(sb);
+        return sb.toString();
+    }
+
+    private void generatePlanHelper(StringBuilder sb) {
+        if (parent != null)
+            parent.generatePlanHelper(sb);
+        if (operator != null) {
+            if (sb.length() > 0)
+                sb.append(",");
+            sb.append(operator);
+        }
+    }
+
 
     @Override
     public String toString() {

@@ -41,8 +41,17 @@ public class State {
         return false;
     }
 
-    public void pour(int i, int j) {
-        bottles.get(j).add(bottles.get(i).removeTop());
+    public int pour(int i, int j) {
+        int count = 0;
+        while(true) {
+            if (canPour(i, j)) {
+                bottles.get(j).add(bottles.get(i).removeTop());
+                count++;
+            }
+            else
+                break;
+        }
+        return count;
     }
 
     public boolean isGoalState() {
@@ -66,7 +75,8 @@ public class State {
 
             if(!goal) return false;
         }
-        return true;
+
+        return goal;
     }
 
     @Override
