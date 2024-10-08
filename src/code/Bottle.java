@@ -49,4 +49,8 @@ public class Bottle {
     public String toString() {
         return "colors=" + colors;
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> b7f0e37a898238fa49e688ec1a0fe506f780278c
