@@ -11,10 +11,8 @@ public class WaterSortSearch extends GenericSearch{
             case "BF": return bfs(root);
             case "DF": return dfs(root, Integer.MAX_VALUE);
             case "ID": return id(root);
-<<<<<<< HEAD
             case "UC": return ucs(root);
-=======
->>>>>>> b7f0e37a898238fa49e688ec1a0fe506f780278c
+
             default: return "";
         }
     }
@@ -82,7 +80,7 @@ public class WaterSortSearch extends GenericSearch{
             i++;
         }
     }
-<<<<<<< HEAD
+
     
     public static String ucs(Node root) {
     PriorityQueue<Node> minCost = new PriorityQueue<>((node1,node2) -> node1.getPathCost() - node2.getPathCost()); 
@@ -107,9 +105,8 @@ public class WaterSortSearch extends GenericSearch{
 
     	
     	return "NOSOLUTION";
+    	}
+}
 
-    }
-}
-=======
-}
->>>>>>> b7f0e37a898238fa49e688ec1a0fe506f780278c
+
+

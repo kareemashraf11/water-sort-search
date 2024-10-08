@@ -51,19 +51,17 @@ public class Main {
         System.out.println(WaterSortSearch.solve(grid4, "ID", false));
         System.out.println("-----------");
         System.out.println(WaterSortSearch.solve(grid4, "DF", false));
-<<<<<<< HEAD
         System.out.println("-----------");
         System.out.println(WaterSortSearch.solve(grid4, "UC", false));
 
-=======
->>>>>>> b7f0e37a898238fa49e688ec1a0fe506f780278c
+
 
         //  List<Node> list = root.expand();
 
        // System.out.println(list);
     }
-<<<<<<< HEAD
+
 }
-=======
-}
->>>>>>> b7f0e37a898238fa49e688ec1a0fe506f780278c
+
+
+
