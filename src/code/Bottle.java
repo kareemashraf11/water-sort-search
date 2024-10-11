@@ -50,6 +50,19 @@ public class Bottle {
         return "colors=" + colors;
     }
 
+        // Method to check if the bottle contains a uniform color
+        public boolean isUniformColor() {
+            if (colors.isEmpty()) return true;  // An empty bottle can be considered uniform
+    
+            char topColor = colors.peek();
+            for (char color : colors) {
+                if (color != topColor) {
+                    return false;  // If any color is different, the bottle is not uniform
+                }
+            }
+            return true;  // All colors are the same
+        }
+
 }
 
 

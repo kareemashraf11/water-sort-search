@@ -81,4 +81,27 @@ public class Node {
                 ", pathCost=" + pathCost +
                 '}';
     }
+    public int heuristic() {
+        // A simple heuristic: number of incorrectly sorted bottles
+        int misplacedBottles = 0;
+        for (Bottle bottle : state.getBottles()) {
+            if (!bottle.isUniformColor()) {
+                misplacedBottles++;
+            }
+        }
+        return misplacedBottles;
+    }
+    public int heuristic2() {
+        int incompleteBottles = 0;
+    
+        for (Bottle bottle : state.getBottles()) {
+            // A bottle is considered incomplete if it's neither empty nor filled with one uniform color
+            if (!bottle.isEmpty() && !bottle.isUniformColor()) {
+                incompleteBottles++;
+            }
+        }
+    
+        return incompleteBottles;
+    }
+    
 }

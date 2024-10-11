@@ -12,6 +12,8 @@ public class WaterSortSearch extends GenericSearch{
             case "DF": return dfs(root, Integer.MAX_VALUE);
             case "ID": return id(root);
             case "UC": return ucs(root);
+            case "AS1": return aStar(root);
+            case "AS2": return aStar2(root);
 
             default: return "";
         }
@@ -106,6 +108,73 @@ public class WaterSortSearch extends GenericSearch{
     	
     	return "NOSOLUTION";
     	}
+
+    public static String aStar(Node root){
+        PriorityQueue<Node> openSet = new PriorityQueue<>(Comparator.comparingInt(WaterSortSearch::f));
+        Set<String> closedSet = new HashSet<>();
+
+        openSet.add(root);
+        int expanded = 0;
+
+        while (!openSet.isEmpty()) {
+            Node current = openSet.poll();
+            expanded++;
+
+            if (current.getState().isGoalState()) {
+                return generateAnswer(current, expanded);
+            }
+
+            closedSet.add(current.getState().toString());
+
+            // Expand the current node and add children to the open set
+            List<Node> children = current.expand();
+            for (Node child : children) {
+                if (!closedSet.contains(child.getState().toString())) {
+                    openSet.add(child);
+                }
+            }
+        }
+
+        return "NOSOLUTION";
+    }
+        // f(n) = g(n) + h(n) where g(n) is pathCost and h(n) is the heuristic
+        public static int f(Node node) {
+            return node.getPathCost() + node.heuristic();
+        }
+
+        public static String aStar2(Node root) {
+            // Priority Queue ordered by f(n) = g(n) + h(n)
+            PriorityQueue<Node> openSet = new PriorityQueue<>(Comparator.comparingInt(WaterSortSearch::f2));
+            Set<String> closedSet = new HashSet<>();
+    
+            openSet.add(root);
+            int expanded = 0;
+    
+            while (!openSet.isEmpty()) {
+                Node current = openSet.poll();
+                expanded++;
+    
+                if (current.getState().isGoalState()) {
+                    return generateAnswer(current, expanded);
+                }
+    
+                closedSet.add(current.getState().toString());
+    
+                // Expand the current node and add children to the open set
+                List<Node> children = current.expand();
+                for (Node child : children) {
+                    if (!closedSet.contains(child.getState().toString())) {
+                        openSet.add(child);
+                    }
+                }
+            }
+    
+            return "NOSOLUTION";
+        }
+            // f(n) = g(n) + h(n) where g(n) is pathCost and h(n) is the heuristic
+    public static int f2(Node node) {
+        return node.getPathCost() + node.heuristic2();
+    }
 }
 
 
